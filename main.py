@@ -1,5 +1,7 @@
 from cgitb import reset
 from tkinter import *
+from urllib.response import addinfo
+
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -36,6 +38,10 @@ start_button.grid(column=0, row=2)
 
 reset_button = Button(text="reset", highlightthickness=0)
 reset_button.grid(column=2, row=2)
+
+#adding the check mark
+check_mark = Label(text="✔", fg=GREEN, bg=YELLOW)
+check_mark.grid(column=1, row=3)
 
 
 
