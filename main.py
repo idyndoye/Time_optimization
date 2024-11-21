@@ -15,8 +15,16 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_timer():
+    window.after_cancel(timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    Title_label.config(text="Timer")
+    check_mark.config(text="")
+    global reps
+    reps = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_time():
@@ -48,9 +56,16 @@ def count_down(count):
         count_second = f"0{count_second}"
     canvas.itemconfig(timer_text, text=f"{count_min}:{count_second}")
     if count > 0:
-        window.after(1000,count_down, count - 1)
+        global timer
+        timer = window.after(1000,count_down, count - 1)
     else:
         start_time()
+        marks = ""
+        work_sessions = math.floor(reps/2)
+        for _ in range(work_sessions):
+            marks += "️✔️"
+            check_mark.config(text=marks)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
